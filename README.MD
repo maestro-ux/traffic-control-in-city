@@ -1,22 +1,22 @@
 # Traffic Signal Simulation using Python OpenGL
 
-## 📌 Project Overview
+## Project Overview
 This project is a 2D City Traffic Signal Simulation* developed using *Python, OpenGL, and GLUT*.  
 This visually demonstrates traffic flow at a four-way intersection with controllable traffic signals, day/night mode, animated vehicles, city buildings, street lights, and environmental effects.
 
 This project was created as part of a *Computer Graphics course project*.
 
 
-## 🎮 Features
-- 🚗 Horizontal and vertical vehicle movement
-- 🚦 Traffic signal control (Red / Yellow / Green)
-- 🌞 Day and 🌙 Night mode with stars and street lights
-- 🏙️ City buildings, trees, roads, zebra crossings
-- ✨ Smooth animation using GLUT timer
+##  Features
+-  Horizontal and vertical vehicle movement
+-  Traffic signal control (Red / Yellow / Green)
+-  Day and  Night mode with stars and street lights
+-  City buildings, trees, roads, zebra crossings
+-  Smooth animation using GLUT timer
 
 ---
 
-## ⌨️ Keyboard Controls
+## Keyboard Controls
 
 | Key | Action |
 
@@ -31,7 +31,7 @@ This project was created as part of a *Computer Graphics course project*.
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 - Python 3
 - PyOpenGL
 - GLUT (OpenGL Utility Toolkit)
