@@ -145,4 +145,76 @@ def draw_footpath():
 
 
 
+#        ROAD MARKINGS + ZEBRA CROSSING
+
+
+def draw_markings():
+    glColor3f(1,1,1)
+
+    for i in range(-12,13):
+        glBegin(GL_QUADS)
+        glVertex2f(i*0.1 - 0.025, -0.008)
+        glVertex2f(i*0.1 + 0.025, -0.008)
+        glVertex2f(i*0.1 + 0.025,  0.008)
+        glVertex2f(i*0.1 - 0.025,  0.008)
+        glEnd()
+
+    stripe_w = 0.045
+    gap = 0.025
+
+    for i in range(9):
+        x = -0.18 + i*(stripe_w + gap)
+        if x > 0.18 - stripe_w: break
+        glBegin(GL_QUADS)
+        glVertex2f(x, -0.28); glVertex2f(x + stripe_w, -0.28)
+        glVertex2f(x + stripe_w, -0.20); glVertex2f(x, -0.20)
+        glEnd()
+
+        glBegin(GL_QUADS)
+        glVertex2f(x, 0.20); glVertex2f(x + stripe_w, 0.20)
+        glVertex2f(x + stripe_w, 0.28); glVertex2f(x, 0.28)
+        glEnd()
+
+    for i in range(9):
+        y = -0.18 + i*(stripe_w + gap)
+        if y > 0.18 - stripe_w: break
+        glBegin(GL_QUADS)
+        glVertex2f(-0.28, y); glVertex2f(-0.20, y)
+        glVertex2f(-0.20, y + stripe_w); glVertex2f(-0.28, y + stripe_w)
+        glEnd()
+
+        glBegin(GL_QUADS)
+        glVertex2f(0.20, y); glVertex2f(0.28, y)
+        glVertex2f(0.28, y + stripe_w); glVertex2f(0.20, y + stripe_w)
+        glEnd()
+
+
+
+#            FOR  BUILDINGS 
+
+
+
+def building(x,y,w,h,color):
+    glColor3f(*color)
+    glBegin(GL_QUADS)
+    glVertex2f(x,y); glVertex2f(x+w,y); glVertex2f(x+w,y+h); glVertex2f(x,y+h)
+    glEnd()
+
+    glColor3f(color[0]*0.82, color[1]*0.82, color[2]*0.82)
+    glBegin(GL_QUADS)
+    glVertex2f(x,y+h); glVertex2f(x+w,y+h)
+    glVertex2f(x+w,y+h+0.05); glVertex2f(x,y+h+0.05)
+    glEnd()
+
+    glColor3f(1,1,0.65 if not is_day else 0.92)
+    for i in range(4):
+        for j in range(4):
+            wx = x + 0.045 + i*0.055
+            wy = y + 0.065 + j*0.09
+            glBegin(GL_QUADS)
+            glVertex2f(wx, wy); glVertex2f(wx+0.035, wy)
+            glVertex2f(wx+0.035, wy+0.07); glVertex2f(wx, wy+0.07)
+            glEnd()
+
+
 
