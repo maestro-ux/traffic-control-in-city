@@ -224,5 +224,91 @@ def draw_city():
     building(-0.9,-0.95,0.35,0.45,(0.7,0.7,0.5))
     building(0.55,-0.9,0.35,0.5,(0.6,0.6,0.8))
 
+#            FOR STREET LIGHT
+
+
+
+def street_light(x,y):
+    glColor3f(0.22,0.22,0.22)
+    glBegin(GL_QUADS)
+    glVertex2f(x-0.012,y); glVertex2f(x+0.012,y)
+    glVertex2f(x+0.012,y+0.38); glVertex2f(x-0.012,y+0.38)
+    glEnd()
+
+    glColor3f(0.32,0.32,0.32)
+    glBegin(GL_QUADS)
+    glVertex2f(x-0.055,y+0.38); glVertex2f(x+0.055,y+0.38)
+    glVertex2f(x+0.055,y+0.42); glVertex2f(x-0.055,y+0.42)
+    glEnd()
+
+    if not is_day:
+        glColor3f(1.0, 0.98, 0.75)
+        draw_circle(x, y+0.46, 0.055)
+
+#     FOR  SIGNAL 
+def draw_signal(x,y):
+    glColor3f(0.05,0.05,0.05)
+    glBegin(GL_QUADS)
+    glVertex2f(x,y); glVertex2f(x+0.09,y)
+    glVertex2f(x+0.09,y+0.32); glVertex2f(x,y+0.32)
+    glEnd()
+
+    glColor3f(1,0,0) if signal_h==0 or signal_v==0 else glColor3f(0.3,0,0)
+    draw_circle(x+0.045,y+0.26,0.028)
+    glColor3f(1,1,0) if signal_h==1 or signal_v==1 else glColor3f(0.3,0.3,0)
+    draw_circle(x+0.045,y+0.16,0.028)
+    glColor3f(0,1,0) if signal_h==2 or signal_v==2 else glColor3f(0,0.3,0)
+    draw_circle(x+0.045,y+0.06,0.028)
+
+
+
+#    FOR VEHICLES 
+
+
+
+
+def draw_car(car):
+    x,y = car["x"], car["y"]
+    glColor3f(*car["color"])
+    glBegin(GL_QUADS)
+    glVertex2f(x,y); glVertex2f(x+0.26,y); glVertex2f(x+0.26,y+0.09); glVertex2f(x,y+0.09)
+    glEnd()
+    glColor3f(car["color"][0]*0.88,car["color"][1]*0.88,car["color"][2]*0.88)
+    glBegin(GL_QUADS)
+    glVertex2f(x+0.06,y+0.09); glVertex2f(x+0.18,y+0.09)
+    glVertex2f(x+0.16,y+0.15); glVertex2f(x+0.08,y+0.15)
+    glEnd()
+    glColor3f(0.08,0.08,0.08)
+    draw_circle(x+0.06,y-0.005,0.022)
+    draw_circle(x+0.20,y-0.005,0.022)
+
+def draw_vertical_car(car):
+    x = car["x"]
+    y = car["y"]
+    dir_ = car["dir"]
+    color = car["color"]
+
+    offset = 0.035 if dir_ == 1 else -0.035
+
+    glColor3f(*color)
+    glBegin(GL_QUADS)
+    glVertex2f(x-0.045, y+offset)
+    glVertex2f(x+0.045, y+offset)
+    glVertex2f(x+0.045, y+offset+0.22)
+    glVertex2f(x-0.045, y+offset+0.22)
+    glEnd()
+
+    glColor3f(color[0]*0.88, color[1]*0.88, color[2]*0.88)
+    glBegin(GL_QUADS)
+    glVertex2f(x-0.035, y+offset+0.13)
+    glVertex2f(x+0.035, y+offset+0.13)
+    glVertex2f(x+0.03,  y+offset+0.20)
+    glVertex2f(x-0.03,  y+offset+0.20)
+    glEnd()
+
+    glColor3f(0.08,0.08,0.08)
+    draw_circle(x-0.035, y+offset+0.005, 0.022)
+    draw_circle(x+0.035, y+offset+0.005, 0.022)
+
 
 
