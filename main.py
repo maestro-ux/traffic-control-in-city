@@ -310,5 +310,87 @@ def draw_vertical_car(car):
     draw_circle(x-0.035, y+offset+0.005, 0.022)
     draw_circle(x+0.035, y+offset+0.005, 0.022)
 
+#  DISPLAY 
+
+
+def display():
+    global time
+    glClear(GL_COLOR_BUFFER_BIT)
+
+
+
+    # Sky gradient
+
+
+
+    glBegin(GL_QUADS)
+    glColor3f(0.55, 0.82, 1.00) if is_day else glColor3f(0.02, 0.02, 0.08)
+    glVertex2f(-1,1); glVertex2f(1,1)
+    glColor3f(0.80, 0.92, 1.00) if is_day else glColor3f(0.04, 0.04, 0.12)
+    glVertex2f(1,0.28); glVertex2f(-1,0.28)
+    glEnd()
+
+
+
+
+    # Stars - twinkling + slow movement
+
+
+
+    if not is_day:
+        glPointSize(2.5)
+        glBegin(GL_POINTS)
+        for star in stars:
+            twinkle = sin(time * 6 + star["phase"]) * 0.45
+            brightness = star["base_brightness"] + twinkle
+            r = 1.0 + twinkle * 0.1
+            g = 1.0 + twinkle * 0.05
+            b = 0.95 + twinkle * 0.15
+            glColor3f(r, g, b)
+            glVertex2f(star["x"], star["y"])
+
+
+
+            star["x"] += star["dx"] * 0.04
+            if star["x"] < -1.0:
+                star["x"] = 1.0
+            if star["x"] > 1.0:
+                star["x"] = -1.0
+
+        glEnd()
+        glPointSize(1.0)
+
+    draw_roads()
+    draw_footpath()
+    draw_markings()
+    draw_city()
+
+
+
+
+
+    # for tree's in BOTTOM empty corner spaces 
+
+
+
+
+    draw_tree(-0.96, -0.85, 1.20)  # bottom-left
+    draw_tree( 0.96, -0.85, 1.15)  # bottom-right
+
+    draw_signal(-0.25,0.24)
+    draw_signal(0.19,-0.62)
+
+    street_light(-0.72,-0.35)
+    street_light(0.72,0.30)
+    street_light(-0.42,0.30)
+    street_light(0.42,-0.35)
+
+    for car in cars:
+        draw_car(car)
+
+    for car in cars_v:
+        draw_vertical_car(car)
+
+    glFlush()
 
 
