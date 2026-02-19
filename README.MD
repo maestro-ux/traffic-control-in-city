@@ -18,20 +18,21 @@ This project was created as part of a *Computer Graphics course project*.
 
 ## Keyboard Controls
 
-| Key | Action |
+ Keys andAction 
 
-| r | Red signal (stop all vehicles) |
-| y | Yellow signal |
-| g | Green signal (all directions) |
-| h | Horizontal green, vertical red |
-| v | Vertical green, horizontal red |
-| d | Day mode |
-| n | Night mode |
-| ESC | Exit program |
 
----
+[ r ] Red signal (stop all vehicles) 
+[ y ] Yellow signal 
+[ g ] Green signal (all directions) 
+[ h ] Horizontal green, vertical red 
+[ v ] Vertical green, horizontal red 
+[ d ] Day mode 
+[ n ] Night mode 
+[ ESC ] Exit program 
 
-##  Technologies Used
+
+
+### Technologies Used
 - Python 3
 - PyOpenGL
-- GLUT (OpenGL Utility Toolkit)
+- GLUT (OpenGLas Utility Toolkit)
