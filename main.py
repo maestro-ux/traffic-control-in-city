@@ -394,3 +394,68 @@ def display():
     glFlush()
 
 
+
+
+# TIMER 
+
+
+
+def timer(v):
+    global time
+    time += 0.04
+
+    if signal_h == 2:
+        for car in cars:
+            car["x"] += car["speed"]
+            if car["x"] > 1.6: car["x"] = -3.0
+
+    if signal_v == 2:
+        for car in cars_v:
+            car["y"] += car["speed"] * car["dir"]
+            if car["y"] > 1.2: car["y"] = -1.0
+            if car["y"] < -1.2: car["y"] = 1.0
+
+    glutPostRedisplay()
+    glutTimerFunc(40, timer, 0)
+
+
+
+
+# KEYBOARD
+
+
+
+
+
+def keyboard(key, x, y):
+    global signal_h, signal_v, is_day
+    if key == b'r': signal_h=0; signal_v=0
+    elif key == b'y': signal_h=1; signal_v=1
+    elif key == b'g': signal_h=2; signal_v=2
+    elif key == b'h': signal_h=2; signal_v=0
+    elif key == b'v': signal_h=0; signal_v=2
+    elif key == b'd':
+        is_day = True
+        glClearColor(0.52, 0.81, 1.0, 1.0)
+    elif key == b'n':
+        is_day = False
+        glClearColor(0.02, 0.02, 0.08, 1.0)
+    elif key == b'\x1b':
+        sys.exit()
+
+                     #    MAIN
+def main():
+    glutInit(sys.argv)
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
+    glutInitWindowSize(1200, 900)
+    glutCreateWindow(b"Traffic Signals in the City by saugat anupam sanjiv")
+    gluOrtho2D(-1,1,-1,1)
+    glClearColor(0.52, 0.81, 1.0, 1.0)
+
+    glutDisplayFunc(display)
+    glutKeyboardFunc(keyboard)
+    glutTimerFunc(40, timer, 0)
+    glutMainLoop()
+
+if __name__ == "__main__":
+    main()
